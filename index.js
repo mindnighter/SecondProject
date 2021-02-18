@@ -1,19 +1,25 @@
-import Registration from './modules/registration'
-document.addEventListener('DOMContentLoaded', () => {
-    let user = new Registration();
+import Registration from './modules/registration';
+import GetCards from './modules/getcards';
+import CreateCards from './modules/createcards';
 
-    login.addEventListener('submit',(event)=>{
-            event.preventDefault();
-            user.log.identifier = login.identifier.value;
-            user.log.password = login.password.value;
-            user.SingIN();
-        })
+document.addEventListener('DOMContentLoaded',async () => {
+    const user = new Registration();
+    const cards = new GetCards();
+    const create = new CreateCards();
+    let info;
+
+    login.addEventListener('submit',async (event)=>{
+        event.preventDefault();
+        info = await user.SingIN();
+        console.log(info);
+       // console.log(cards.Get(info.jwt));
+       // console.log(create.Create(info.jwt));
+    })
 
     registration.addEventListener('submit',(event)=>{
         event.preventDefault();
-        user.data.email = registration.email.value;
-        user.data.username = registration.identifier.value;
-        user.data.password = registration.password.value;
         user.Registrate();
     })
 });
+
+

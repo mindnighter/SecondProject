@@ -27,12 +27,16 @@ export default class Registration {
     }
 
     Registrate = async () => {
+        this.data.email = registration.email.value;
+        this.data.username = registration.identifier.value;
+        this.data.password = registration.password.value;
         const promise = await this.PostData(this.UrlRegister,this.data);
-        console.log(promise);
     }
 
     SingIN = async () => {
-        const promise = await this.PostData(this.UrlLogin,this.log).then(response=>response);
-        console.log(promise);
+        this.log.identifier = login.identifier.value;
+        this.log.password = login.password.value;
+        const promise = await this.PostData(this.UrlLogin,this.log);
+        return await promise
     }
 }
