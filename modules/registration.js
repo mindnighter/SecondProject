@@ -4,14 +4,14 @@ export default class Registration {
     UrlLogin = 'https://radiant-temple-07706.herokuapp.com/auth/local';
    
     data = {
-        username: "777",
-        email: "777@bar.com",
-        password: "777"
+        username: "",
+        email: "",
+        password: ""
     };
 
     log = {
-        identifier: "1",
-        password: "1"
+        identifier: "",
+        password: ""
     };
 
     PostData = async (url, data) => {
@@ -24,6 +24,11 @@ export default class Registration {
         });
 
         return await response.json();
+    }
+
+    Registrate = async () => {
+        const promise = await this.PostData(this.UrlRegister,this.data);
+        console.log(promise);
     }
 
     SingIN = async () => {
