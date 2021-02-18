@@ -1,0 +1,147 @@
+
+*{
+    box-sizing: border-box;
+}
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+body {
+    line-height: 1;
+    background-color: #049143;
+}
+
+ul {
+    list-style:none;
+}
+
+a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+    text-decoration: none;
+}
+
+button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    margin: 0;
+    cursor: pointer;
+    padding: 0;
+}
+.container {
+    margin: 0 auto;
+    max-width: 1200px;
+}
+.board{
+    padding: 50px 0;
+
+
+}
+.board__inner {
+    display: flex;
+    justify-content: space-between;
+}
+.board-block {
+    padding: 20px 5px;
+    background-color: #ECEDED;
+    border-radius: 10px;
+    max-width: 280px;
+    min-width: 280px;
+    height: 100%;
+}
+.board-block__title {
+    text-align: center;
+    color: #000;
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    
+}
+.board-block__card {
+    background-color: #fff;
+    color: #000;
+    border-radius: 10px;
+    padding: 10px 5px;
+    margin-bottom: 10px;
+}
+.card-title {
+    font-weight: 700;
+    font-size: 16px;
+}
+.card-desciption {
+    margin: 5px 0;
+    font-size: 15px;
+    line-height: 18px;
+}
+.card-btns {
+    margin-top: 10px;
+}
+.card-btns button {
+    cursor: pointer;
+    
+}
+.card-btns img {
+    height: 20px;
+}
+.add__wrapper {
+    text-align: center;
+
+}
+.board-block__add-card:hover {
+    background-color: #049143;
+    color: #ECEDED;
+
+}
+.board-block__add-card {
+    border: 1px solid #000;
+    padding: 6px 30px;
+    border-radius: 10px;  
+}
+.admission__form,
+.registr__form {
+    max-width: 300px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.admission__login,
+.admission__password,
+.admission__btn,
+.registr__login,
+.registr__email,
+.registr__password{
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.admission__btn,
+.admission__registr,
+.registr__btn {
+    background-color: blue;
+    color: #fff;
+    padding: 7px;
+    cursor: pointer;
+}
