@@ -1,27 +1,28 @@
-import Registration from './modules/registration'
-import card from './modules/card'
-document.addEventListener('DOMContentLoaded', () => {
+import user from './modules/registration';
+import getCards from './modules/getcards';
+import deleteCards from './modules/deletecards';
+import Card from './modules/card';
 
-    let user = new Registration();
-    
+document.addEventListener('DOMContentLoaded',async () => {
+    let info;
 
-    login.addEventListener('submit', (event) => {
+    login.addEventListener('submit',async (event)=>{
         event.preventDefault();
-        user.log.identifier = login.identifier.value;
-        user.log.password = login.password.value;
-        user.SingIN();
+        info = await user.SingIN();
+       // console.log(info);
+       // deletecard.Delete(info.jwt);
+       // console.log(createCards.Create(info.jwt));
+       const startCard = await getCards.Get(info.jwt);
+       const card = new Card(startCard,info.jwt)
+       card.run();
     })
 
-    registration.addEventListener('submit', (event) => {
+    registration.addEventListener('submit',(event)=>{
         event.preventDefault();
-        user.data.email = registration.email.value;
-        user.data.username = registration.identifier.value;
-        user.data.password = registration.password.value;
         user.Registrate();
     })
 
-    card.run();
-
-
-
+    
 });
+
+

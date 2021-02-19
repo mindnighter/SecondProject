@@ -1,6 +1,8 @@
-class Card {
-    constructor() {
-
+import createCards from './createcards';
+export default class Card {
+    constructor(data,jwt) {
+        this.data = data;
+        this.jwt = jwt;
     }
     viewModal(isOpen, title = '', descr = '') {
         const modal = document.querySelector('.modal-create');
@@ -20,7 +22,7 @@ class Card {
             modalDescr.value = descr;
         }
     }
-    createElement(classParent) {
+    createElement(classParent,title,description) {
         const blockCards = document.querySelector(classParent).querySelector('.board-block__list');
         const newCard = document.createElement('li');
         const newCardTitle = document.createElement('div');
@@ -46,9 +48,8 @@ class Card {
         newCardBtnChange.classList.add('card-btns__change');
         newCardBtnDelete.classList.add('card-btns__delete');
 
-
-        newCardTitle.innerHTML = document.querySelector('.modal-create__title').value;
-        newCardDescr.innerHTML = document.querySelector('.modal-create__descr').value;
+        newCardTitle.innerHTML = title;
+        newCardDescr.innerHTML = description;
 
         newCardViewSpanShow.innerHTML = `<?xml version="1.0" standalone="no"?>
         <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
@@ -145,27 +146,36 @@ class Card {
             this.viewModal(false)
         };
         modalCreateBtn.onclick = () => {
-            this.createElement(classElement);
+            const tittle = document.querySelector('.modal-create__title').value;
+            const desciption = document.querySelector('.modal-create__descr').value;
+
+            createCards.Create(this.jwt,classElement.slice(1),tittle,desciption);
+            
+            this.createElement(classElement,tittle,desciption);
             this.viewModal(false);
         };
     }
     run() {
-        const createTodoBtn = document.querySelector('.board-todo').querySelector('.board-block__add-card');
-        const createProgressBtn = document.querySelector('.board-progress').querySelector('.board-block__add-card');
-        const createTestingBtn = document.querySelector('.board-testing').querySelector('.board-block__add-card');
-        const createDoneBtn = document.querySelector('.board-done').querySelector('.board-block__add-card');
+        const createTodoBtn = document.querySelector('.to_do').querySelector('.board-block__add-card');
+        const createProgressBtn = document.querySelector('.in_progress').querySelector('.board-block__add-card');
+        const createTestingBtn = document.querySelector('.testing').querySelector('.board-block__add-card');
+        const createDoneBtn = document.querySelector('.done').querySelector('.board-block__add-card');
+
+        this.data.map((elem)=>{
+            this.createElement(`.${elem.status}`,elem.title,elem.desciption);
+        });
 
         createTodoBtn.addEventListener('click', () => {
-            this.create('.board-todo');
+            this.create('.to_do');
         });
         createProgressBtn.addEventListener('click', () => {
-            this.create('.board-progress');
+            this.create('.in_progress');
         });
         createTestingBtn.addEventListener('click', () => {
-            this.create('.board-testing');
+            this.create('.testing');
         });
         createDoneBtn.addEventListener('click', () => {
-            this.create('.board-done');
+            this.create('.done');
         });
         
         
@@ -182,4 +192,3 @@ class Card {
     }
 
 }
-export default new Card();
