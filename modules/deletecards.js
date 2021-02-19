@@ -1,9 +1,11 @@
-export default class GetCards {
-    url = "https://radiant-temple-07706.herokuapp.com/cards";
+export default class DeleteCards {
+    id = "/21"
+    url = `https://radiant-temple-07706.herokuapp.com/cards${this.id}`;
 
-    Get = async (jwt) => {
+
+    Delete = async (jwt) => {
         const response = await fetch(this.url, {
-            method: 'GET',
+            method: 'DELETE',
             headers: {
             'Authorization': 'Bearer '+jwt
             }
