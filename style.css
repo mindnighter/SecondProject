@@ -124,17 +124,31 @@ button {
     padding: 6px 30px;
     border-radius: 10px;  
 }
-.admission__form,
-.registr__form,
+
 .modal-create {
     max-width: 300px;
     min-width: 300px;
-    margin: 50px auto;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     background-color: #ECEDED;
     padding: 20px;
     border-radius: 10px;
+}
+.admission__form,
+.registr__form {
+    display: flex;
+    flex-direction: column;
+
+}
+.admission__block,
+.registr__block {
+    max-width: 300px;
+    min-width: 300px;
+    margin: 50px auto;
+    background-color: #ECEDED;
+    border-radius: 10px;
+    padding: 20px;
 }
 
 .admission__login,
@@ -144,7 +158,8 @@ button {
 .registr__email,
 .registr__password,
 .modal-create__title,
-.modal-create__descr {
+.modal-create__descr,
+.registr__btn {
     padding: 5px;
     outline: none;
     border-radius: 5px;
@@ -154,19 +169,32 @@ button {
 .admission__btn,
 .registr__btn,
 .modal-create__done,
-.modal-create__close {
-    background-color: transparent;
+.modal-create__close,
+.admission__reg,
+.registr__log  {
     border-radius: 10px;
     border: 1px solid #000;
     padding: 7px;
     background-color: #fff;
 
 }
+
 .board-block__add-card:hover,
 .admission__btn:hover,
-.registr__btn:hover {
+.registr__btn:hover,
+.admission__reg:hover,
+.registr__log:hover,
+.modal-error__close:hover {
     background-color: #4C8080;
     color: #ECEDED;
+}
+.registr__btn-log,
+.admission__btn-reg {
+    text-align: right;
+}
+.registr__btn-log span,
+.admission__btn-reg span{
+    margin-right: 5px;
 }
 
 .modal-create__done:hover {
@@ -195,4 +223,21 @@ button {
     color: #fff;
     background-color: #000;
     margin-right: 5px;
+}
+.modal-error {
+    background-color: #fff;
+    border: 2px solid red;
+    padding: 10px;
+    width: 300px;
+    border-radius: 10px;
+    margin: 10px auto;
+    line-height: 20px;
+    font-weight: 700;
+    z-index: 3;
+}
+.modal-error__close {
+    padding: 5px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    margin-top: 5px;
 }
