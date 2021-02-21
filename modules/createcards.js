@@ -7,7 +7,7 @@ class CreateCards {
         description: ""
     }
    
-    async Create(jwt,status,title,description) {
+    async create(jwt,status,title,description) {
         this.data.status = status;
         this.data.title = title;
         this.data.description = description;

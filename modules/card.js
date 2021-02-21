@@ -156,6 +156,7 @@ export default class Card {
         };
     }
     run() {
+        console.log(this.data);
         const createTodoBtn = document.querySelector('.to_do').querySelector('.board-block__add-card');
         const createProgressBtn = document.querySelector('.in_progress').querySelector('.board-block__add-card');
         const createTestingBtn = document.querySelector('.testing').querySelector('.board-block__add-card');
