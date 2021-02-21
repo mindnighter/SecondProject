@@ -1,4 +1,6 @@
 import createCards from './createcards';
+import deleteCard from './deletecards';
+
 export default class Card {
     constructor(data,jwt) {
         this.data = data;
@@ -79,12 +81,11 @@ export default class Card {
         modalCloseBtn.onclick = () => {
             this.viewModal(false)
         };
-        modalCreateBtn.onclick = () => {
+        modalCreateBtn.onclick = async () => {
             const tittle = document.querySelector('.modal-create__title').value;
             const desciption = document.querySelector('.modal-create__descr').value;
-            const id = 9;
-
-            createCards.Create(this.jwt, classElement.slice(1), tittle, desciption);
+            const response = await createCards.create(this.jwt, classElement.slice(1), tittle, desciption);
+            console.log(response.id);
             
             this.createElement(classElement, tittle, desciption, id);
             this.viewModal(false);
@@ -147,6 +148,7 @@ export default class Card {
         };
     }
     deleteCard(cardId) {
+        deleteCard.delete(this.jwt,cardId);
         document.getElementById(cardId).remove();
     }
     

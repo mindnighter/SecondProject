@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded',async () => {
     document.querySelector('.admission__form').addEventListener('submit',async (event)=>{
         event.preventDefault();
         info = await user.singIN();
-       // console.log(info);
+        console.log(info);
       /*  for(let i = 58; i <= 63; i++){
         deleteCard.delete(info.jwt,i);
        } */
