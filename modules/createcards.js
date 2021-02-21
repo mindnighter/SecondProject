@@ -1,13 +1,13 @@
 class CreateCards {
     url = "https://radiant-temple-07706.herokuapp.com/cards";
 
-    data = {
+    data ={
         status: "",
         title: "",
-        description: "",
+        description: ""
     }
-
-    async Create(jwt, status, title, description) {
+   
+    async create(jwt,status,title,description) {
         this.data.status = status;
         this.data.title = title;
         this.data.description = description;
@@ -15,8 +15,8 @@ class CreateCards {
             method: 'POST',
             body: JSON.stringify(this.data),
             headers: {
-                'Authorization': 'Bearer ' + jwt,
-                'Content-Type': 'application/json'
+            'Authorization': 'Bearer '+jwt,
+            'Content-Type': 'application/json'
             }
         });
         return await response.json();

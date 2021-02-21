@@ -1,9 +1,7 @@
-class DeleteCards {
-    id = "/21"
-    url = `https://radiant-temple-07706.herokuapp.com/cards${this.id}`;
-
-    async Delete(jwt) {
-        const response = await fetch(this.url, {
+class DeleteCard {
+    async delete(jwt,id) {
+        const url = `https://radiant-temple-07706.herokuapp.com/cards/${id}`;
+        const response = await fetch(url, {
             method: 'DELETE',
             headers: {
             'Authorization': 'Bearer '+jwt
@@ -13,4 +11,4 @@ class DeleteCards {
     }
 }
 
-export default new DeleteCards();
+export default new DeleteCard();

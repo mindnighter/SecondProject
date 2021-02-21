@@ -1,7 +1,7 @@
 class Registration {
-    UrlRegister = 'https://radiant-temple-07706.herokuapp.com/auth/local/register';
+    urlRegister = 'https://radiant-temple-07706.herokuapp.com/auth/local/register';
 
-    UrlLogin = 'https://radiant-temple-07706.herokuapp.com/auth/local';
+    urlLogin = 'https://radiant-temple-07706.herokuapp.com/auth/local';
    
     data = {
         username: "",
@@ -14,7 +14,7 @@ class Registration {
         password: ""
     };
 
-    async PostData(url, data) {
+    async postData(url, data) {
         const response = await fetch(url, {
             method: 'POST',
             body: JSON.stringify(data),
@@ -25,18 +25,21 @@ class Registration {
         return await response.json();
     }
 
-    async Registrate() {
+    async registrate() {
+        const registration = document.querySelector('.registr__form');
         this.data.email = registration.email.value;
         this.data.username = registration.identifier.value;
         this.data.password = registration.password.value;
-        const promise = await this.PostData(this.UrlRegister,this.data);
+        const promise = await this.postData(this.urlRegister,this.data);
+        return await promise;
     }
 
-    async SingIN() {
+    async singIN() {
+        const login = document.querySelector('.admission__form');
         this.log.identifier = login.identifier.value;
         this.log.password = login.password.value;
-        const promise = await this.PostData(this.UrlLogin,this.log);
-        return await promise
+        const promise = await this.postData(this.urlLogin,this.log);
+        return await promise;
     }
 }
 
