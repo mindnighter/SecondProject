@@ -1,5 +1,6 @@
 import createCards from './createcards';
 import deleteCard from './deletecards';
+import updateCard from './updatecards';
 
 export default class Card {
     constructor(data,jwt) {
@@ -140,10 +141,14 @@ export default class Card {
             this.viewModal(false)
         };
         modalCreateBtn.onclick = () => {
+            // LATER SOMETHING DO WHITH TAT
+            const status = card.parentNode.parentNode.className.slice(12)
+            //
             const tittleValue = document.querySelector('.modal-create__title').value;
             const descriptionValue = document.querySelector('.modal-create__descr').value;
             descriptionElem.innerHTML = descriptionValue;
             titleElem.innerHTML = tittleValue;
+            updateCard.update(this.jwt,cardId,status,tittleValue,descriptionValue);
             this.viewModal(false);
         };
     }
