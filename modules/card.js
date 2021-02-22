@@ -8,6 +8,7 @@ export default class Card {
         this.jwt = jwt;
     }
     viewModal(isOpen, title = '', descr = '') {
+        const backgroundModal = document.querySelector('.overlay-modal');
         const modal = document.querySelector('.modal-create');
         const modalTitle = document.querySelector('.modal-create__title');
         const modalDescr = document.querySelector('.modal-create__descr');
@@ -16,10 +17,12 @@ export default class Card {
         });
 
         if (isOpen) {
+            backgroundModal.classList.remove('hide');
             modal.classList.remove('hide');
             modalTitle.value = title;
             modalDescr.value = descr;
         } else {
+            backgroundModal.classList.add('hide');
             modal.classList.add('hide');
             modalTitle.value = title;
             modalDescr.value = descr;
@@ -86,9 +89,7 @@ export default class Card {
             const tittle = document.querySelector('.modal-create__title').value;
             const desciption = document.querySelector('.modal-create__descr').value;
             const response = await createCards.create(this.jwt, classElement.slice(1), tittle, desciption);
-            console.log(response.id);
-            
-            this.createElement(classElement, tittle, desciption, id);
+            this.createElement(classElement, tittle, desciption, response.id);
             this.viewModal(false);
         };
     }
