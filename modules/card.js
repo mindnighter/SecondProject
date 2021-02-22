@@ -1,6 +1,7 @@
 import createCards from './createcards';
 import deleteCard from './deletecards';
 import updateCard from './updatecards';
+import dragElement from './drandrop';
 
 export default class Card {
     #data;
@@ -74,6 +75,7 @@ export default class Card {
                 this.#deleteCard(id);             
             } 
         });
+        dragElement.drag(newCard);
         blockCards.append(newCard)
 
     }
@@ -130,6 +132,14 @@ export default class Card {
             description.classList.add('hide');
             showBtn.innerHTML = "show";
         }
+    }
+
+    changeCardForDragNDrop(cardId,status){
+        const card = document.getElementById(cardId);
+        const tittleValue = card.querySelector('.card-desciption').value;
+        const descriptionValue = card.querySelector('.card-title').value;
+        updateCard.update(this.#jwt,cardId,status,tittleValue,descriptionValue);
+     
     }
 
     #changeCard(cardId) {
