@@ -1,7 +1,7 @@
-import createCards from './CreateCards';
-import deleteCard from './DeleteCards';
-import updateCard from './updatecards';
-import dragElement from './DraNDrop';
+import createCards from './CreateCard';
+import deleteCard from './DeleteCard';
+import updateCard from './UpdateCard';
+import dragElement from './Dra`N`Drop';
 
 class Board {
     #data;

@@ -1,4 +1,4 @@
-import updateCard from './updatecards';
+import updateCard from './UpdateCard';
 
 class Drag {
     #jwt = "";

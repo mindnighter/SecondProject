@@ -1,5 +1,5 @@
-import user from './Registration';
-import getCards from './GetCards';
+import user from './RegistrationLogIn';
+import getCards from './GetAllCards';
 import board from './Board';
 
 class View {

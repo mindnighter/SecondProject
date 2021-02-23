@@ -1,4 +1,4 @@
-import view from './modules/View';
+import view from './modules/Views';
 
 document.addEventListener('DOMContentLoaded',() => {
     view.render();
