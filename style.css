@@ -74,6 +74,9 @@ button {
     min-width: 280px;
     height: 100%;
 }
+.board-block__list{
+    min-height: 50px;
+}
 .board-block__title {
     text-align: center;
     color: #000;

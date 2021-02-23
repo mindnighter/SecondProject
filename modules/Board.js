@@ -1,15 +1,11 @@
-import createCards from './createcards';
-import deleteCard from './deletecards';
+import createCards from './CreateCards';
+import deleteCard from './DeleteCards';
 import updateCard from './updatecards';
-import dragElement from './drandrop';
+import dragElement from './DraNDrop';
 
-export default class Card {
+class Board {
     #data;
     #jwt;
-    constructor(data,jwt) {
-        this.#data = data;
-        this.#jwt = jwt;
-    }
     #viewModal(isOpen, title = '', descr = '') {
         const backgroundModal = document.querySelector('.overlay-modal');
         const modal = document.querySelector('.modal-create');
@@ -69,13 +65,13 @@ export default class Card {
                 this.#showCard(id);
             } 
             else if (event.target.classList.value === 'card-btns__change') {
-                this.#changeCard(id)
+                this.#changeCard(id,classParent.slice(1))
             } 
             else if (event.target.classList.value === 'card-btns__delete') {
                 this.#deleteCard(id);             
             } 
         });
-        dragElement.drag(newCard);
+        dragElement.drag(newCard,this.#jwt);
         blockCards.append(newCard)
 
     }
@@ -97,7 +93,9 @@ export default class Card {
             this.#viewModal(false);
         };
     }
-    run() {
+    run(data,jwt) {
+        this.#data = data;
+        this.#jwt = jwt;
         const board = document.querySelector('.board');
         const createTodoBtn = document.querySelector('.to_do').querySelector('.board-block__add-card');
         const createProgressBtn = document.querySelector('.in_progress').querySelector('.board-block__add-card');
@@ -134,15 +132,7 @@ export default class Card {
         }
     }
 
-    changeCardForDragNDrop(cardId,status){
-        const card = document.getElementById(cardId);
-        const tittleValue = card.querySelector('.card-desciption').value;
-        const descriptionValue = card.querySelector('.card-title').value;
-        updateCard.update(this.#jwt,cardId,status,tittleValue,descriptionValue);
-     
-    }
-
-    #changeCard(cardId) {
+    #changeCard(cardId,status) {
         const card = document.getElementById(cardId);
         const descriptionElem = card.querySelector('.card-desciption');
         const titleElem = card.querySelector('.card-title');
@@ -154,9 +144,6 @@ export default class Card {
             this.#viewModal(false)
         };
         modalCreateBtn.onclick = () => {
-            // LATER SOMETHING DO WHITH THAT
-            const status = card.parentNode.parentNode.className.slice(12)
-            //
             const tittleValue = document.querySelector('.modal-create__title').value;
             const descriptionValue = document.querySelector('.modal-create__descr').value;
             descriptionElem.innerHTML = descriptionValue;
@@ -169,6 +156,6 @@ export default class Card {
         deleteCard.delete(this.#jwt,cardId);
         document.getElementById(cardId).remove();
     }
-    
-
 }
+
+export default new Board();
