@@ -56,16 +56,17 @@ button {
 
 .container {
     margin: 0 auto;
-    max-width: 1200px;
+    max-width: 1180px;
 }
 
 .board {
     padding: 50px 0;
-    min-width: 1200px;
+
 }
 
 .board__inner {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
 }
 
@@ -302,4 +303,38 @@ button {
     padding: 0 0 6px 0;
     text-align: center;
     color: red;
+}
+
+@media (max-width: 1200px) {
+    .board-block {
+        margin-bottom: 40px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+}
+
+@media (max-width: 610px) {
+    .board__inner {
+        justify-content: center;
+    }
+
+    .modal-create {
+        margin-left: -121px;
+        min-width: 250px;
+        max-width: 250px;
+
+    }
+
+}
+
+@media (max-width: 400px) {
+
+    .board-block,
+    .admission__block,
+    .registr__block {
+        max-width: 260px;
+        min-width: 260px;
+    }
+
 }
