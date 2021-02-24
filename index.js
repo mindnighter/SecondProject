@@ -1,8 +1,7 @@
-import view from './modules/Views';
+import view from "./modules/Views";
 
-document.addEventListener('DOMContentLoaded',() => {
-    "use strict";
-    view.render();
+document.addEventListener("DOMContentLoaded", () => {
+  "use strict";
+
+  view.render();
 });
-
-
