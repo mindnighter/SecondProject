@@ -1,7 +1,7 @@
 import createCards from './CreateCard';
 import deleteCard from './DeleteCard';
 import updateCard from './UpdateCard';
-import dragElement from './Dra`N`Drop';
+import dragElement from './DraNDrop';
 
 class Board {
     #data;
@@ -11,20 +11,28 @@ class Board {
         const modal = document.querySelector('.modal-create');
         const modalTitle = document.querySelector('.modal-create__title');
         const modalDescr = document.querySelector('.modal-create__descr');
+        const error = document.querySelector('.modal-create__title-error');
         modal.addEventListener('submit', (event) => {
             event.preventDefault();
         });
 
+        modalTitle.addEventListener('input', () => {
+            if(modalTitle.value === '') {
+                error.classList.remove('hide');
+            } else {
+                error.classList.add('hide');
+            }
+        });
         if (isOpen) {
             backgroundModal.classList.remove('hide');
             modal.classList.remove('hide');
+            error.classList.add('hide');
             modalTitle.value = title;
             modalDescr.value = descr;
+            
         } else {
             backgroundModal.classList.add('hide');
             modal.classList.add('hide');
-            modalTitle.value = title;
-            modalDescr.value = descr;
         }
     }
     #createElement(classParent, title, description, id) {
@@ -81,16 +89,23 @@ class Board {
 
         const modalCloseBtn = document.querySelector('.modal-create__close');
         const modalCreateBtn = document.querySelector('.modal-create__done');
+        
 
         modalCloseBtn.onclick = () => {
-            this.viewModal(false)
+            this.#viewModal(false);
         };
         modalCreateBtn.onclick = async () => {
             const tittle = document.querySelector('.modal-create__title').value;
             const desciption = document.querySelector('.modal-create__descr').value;
-            const response = await createCards.create(this.#jwt, classElement.slice(1), tittle, desciption);
-            this.#createElement(classElement, tittle, desciption,response.id);
-            this.#viewModal(false);
+            const error = document.querySelector('.modal-create__title-error');
+            if (tittle !== '') {
+                const response = await createCards.create(this.#jwt, classElement.slice(1), tittle, desciption);
+                this.#createElement(classElement, tittle, desciption,response.id);
+                this.#viewModal(false);
+            } else {
+                error.classList.remove('hide');
+            }
+            
         };
     }
     run(data,jwt) {
@@ -124,8 +139,12 @@ class Board {
         const description = card.querySelector('.card-desciption');
         const showBtn = card.querySelector('.card-btns__view');
         if(description.classList.contains('hide')) {
-            description.classList.remove('hide');
-            showBtn.innerHTML = "hide";
+            if(description.innerHTML !== '') {
+                console.log(description.innerHTML !== '');
+                description.classList.remove('hide');
+                showBtn.innerHTML = "hide";
+            }
+            
         } else {
             description.classList.add('hide');
             showBtn.innerHTML = "show";
@@ -135,10 +154,14 @@ class Board {
     #changeCard(cardId,status) {
         const card = document.getElementById(cardId);
         const descriptionElem = card.querySelector('.card-desciption');
+        const showBtn = card.querySelector('.card-btns__view');
         const titleElem = card.querySelector('.card-title');
         const modalCloseBtn = document.querySelector('.modal-create__close');
         const modalCreateBtn = document.querySelector('.modal-create__done');
+        
+
         this.#viewModal(true, titleElem.innerHTML, descriptionElem.innerHTML);
+
 
         modalCloseBtn.onclick = () => {
             this.#viewModal(false)
@@ -146,10 +169,19 @@ class Board {
         modalCreateBtn.onclick = () => {
             const tittleValue = document.querySelector('.modal-create__title').value;
             const descriptionValue = document.querySelector('.modal-create__descr').value;
-            descriptionElem.innerHTML = descriptionValue;
-            titleElem.innerHTML = tittleValue;
-            updateCard.update(this.#jwt,cardId,status,tittleValue,descriptionValue);
-            this.#viewModal(false);
+            const error = document.querySelector('.modal-create__title-error');
+            
+            if(tittleValue !== '') {
+                descriptionElem.innerHTML = descriptionValue;
+                titleElem.innerHTML = tittleValue;
+                updateCard.update(this.#jwt,cardId,status,tittleValue,descriptionValue);
+                descriptionElem.classList.add('hide');
+                showBtn.innerHTML = "show";
+                this.#viewModal(false);
+            } else {
+                error.classList.remove('hide');
+            }
+            
         };
     }
     #deleteCard(cardId) {

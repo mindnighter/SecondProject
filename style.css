@@ -57,10 +57,8 @@ button {
     margin: 0 auto;
     max-width: 1200px;
 }
-.board{
+.board {
     padding: 50px 0;
-
-
 }
 .board__inner {
     display: flex;
@@ -73,6 +71,7 @@ button {
     max-width: 280px;
     min-width: 280px;
     height: 100%;
+    box-shadow: 0 0 5px 0 #000;
 }
 .board-block__list{
     min-height: 50px;
@@ -152,6 +151,7 @@ button {
     background-color: #ECEDED;
     border-radius: 10px;
     padding: 20px;
+    box-shadow: 0 0 15px 3px #000;
 }
 
 .admission__login,
@@ -266,4 +266,11 @@ button {
     margin-left: -200px;
     box-shadow: 0 0 15px 3px #000;
     z-index: 200;
+}
+.modal-create__title-error {
+    line-height: 18px;
+    font-size: 14px;
+    padding: 0 0 6px 0;
+    text-align: center;
+    color: red;
 }
