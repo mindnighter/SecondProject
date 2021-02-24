@@ -153,7 +153,6 @@ class Board {
     const showBtn = card.querySelector(".card-btns__view");
     if (description.classList.contains("hide")) {
       if (description.innerHTML !== "") {
-        console.log(description.innerHTML !== "");
         description.classList.remove("hide");
         showBtn.innerHTML = "hide";
       }
